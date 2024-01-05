@@ -1,4 +1,4 @@
- package com.github.gzqyl.rnocr
+ package com.github.gzqyl.rnframeocr
 
  import com.facebook.react.ReactPackage
  import com.facebook.react.bridge.NativeModule

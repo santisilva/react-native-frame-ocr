@@ -49,10 +49,8 @@ dependencies {
   // noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-android:+"
   implementation "androidx.camera:camera-core:1.1.0"
-  implementation project(':react-native-worklets-core')
-  implementation project(':react-native-vision-camera')
-
-  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
+  implementation project(path: ':gzqyl_react-native-userdefault')
+  implementation project(path: ':react-native-vision-camera')
   
   implementation 'com.google.mlkit:text-recognition:16.0.0'
 
@@ -65,6 +63,4 @@ dependencies {
   // To recognize Korean script
   implementation 'com.google.mlkit:text-recognition-korean:16.0.0'
 
-  //dataStore
-  implementation "androidx.datastore:datastore-preferences:1.0.0"
 }
