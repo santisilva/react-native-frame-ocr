@@ -146,8 +146,7 @@ public class OCRFrameProcessorPlugin: FrameProcessorPlugin {
         
         var result: Text
         //here,we get the local lang settings
-        let mlkitLangCodeObj: RNUserDefaultSwift = RNUserDefaultSwift()
-        let ocrMsg = mlkitLangCodeObj.getMLKitLangSwift()
+        let ocrMsg = RNUserDefault.getMLKitLangSwift()
         
         var textRecognizer: TextRecognizer
             
