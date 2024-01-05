@@ -5,6 +5,8 @@
  import android.graphics.Rect
  import android.media.Image
  import android.util.Log
+ import com.facebook.react.bridge.ReactApplicationContext
+ import com.github.gzqyl.rnuserdefault.RNUserDataStore
  import com.google.android.gms.tasks.Task
  import com.google.android.gms.tasks.Tasks
  import com.google.mlkit.vision.common.InputImage
@@ -20,7 +22,7 @@
  import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin
  import com.mrousavy.camera.types.Orientation
 
- class OCRFrameProcessorPlugin(options: MutableMap<String, Any>?) : FrameProcessorPlugin(options) {
+ class OCRFrameProcessorPlugin(private val reactContext: ReactApplicationContext, options: MutableMap<String, Any>?) : FrameProcessorPlugin(options) {
 
      private fun getBlockArray(blocks: MutableList<Text.TextBlock>): List<HashMap<String, Any?>> {
          val blockArray = mutableListOf<HashMap<String, Any?>>()
@@ -141,7 +143,7 @@
          val result = hashMapOf<String, Any>()
 
          //check mlkitLang here...
-         val recognizer = when(RNUserDataStore().getMLkitLang()){
+         val recognizer = when(RNUserDataStore(reactContext).getMLkitLang()){
              "zh" -> {
                  TextRecognition.getClient(ChineseTextRecognizerOptions.Builder().build())
              }
@@ -176,21 +178,21 @@
          return hashMapOf("result" to result)
      }
 
-    //  companion object {
-    //      public var isRegistered = false
-    //      private fun logExtrasForTesting(text: Text?) {
-    //          if (text != null) {
+      companion object {
+          public var isRegistered = false
+          private fun logExtrasForTesting(text: Text?) {
+              if (text != null) {
 
-    //              for (block in text.textBlocks) {
-    //                  for (line in block.lines) {
-    //                      for (element in line.elements) {
-    //                          for (symbol in element.symbols) {
-    //                              Log.d("MANUAL_TESTING_LOG", "Symbol text is: ${symbol.text} height:${(symbol.boundingBox?.bottom ?: 0) - (symbol.boundingBox?.top ?: 0)}")
-    //                          }
-    //                      }
-    //                  }
-    //              }
-    //         }
-    //      }
-    //  }
+                  for (block in text.textBlocks) {
+                      for (line in block.lines) {
+                          for (element in line.elements) {
+                              for (symbol in element.symbols) {
+                                  Log.d("MANUAL_TESTING_LOG", "Symbol text is: ${symbol.text} height:${(symbol.boundingBox?.bottom ?: 0) - (symbol.boundingBox?.top ?: 0)}")
+                              }
+                          }
+                      }
+                  }
+             }
+          }
+      }
  }

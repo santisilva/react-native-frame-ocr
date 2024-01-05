@@ -13,7 +13,7 @@
          if(!OCRFrameProcessorPlugin.isRegistered){
              OCRFrameProcessorPlugin.isRegistered = true
              FrameProcessorPluginRegistry.addFrameProcessorPlugin("scanOCR") {
-                 OCRFrameProcessorPlugin(it)
+                 OCRFrameProcessorPlugin(reactContext, it)
              }
          }
          return emptyList()
